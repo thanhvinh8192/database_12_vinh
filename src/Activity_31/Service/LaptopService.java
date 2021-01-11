@@ -2,11 +2,13 @@ package Activity_31.Service;
 
 import Activity_31.Laptop;
 
+import java.sql.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LaptopService {
     Connection connection;
@@ -14,10 +16,11 @@ public class LaptopService {
     public LaptopService(Connection connection) {
         this.connection = connection;
     }
-    public ArrayList<Laptop> findLaptopByPrice(Float minPrice, Float maxPrice){
-        ArrayList<Laptop> response = new ArrayList<>();
+
+    public List<Laptop> findLaptopByPrice(Float minPrice, Float maxPrice){
+        List<Laptop> response = new ArrayList<>();
         try {
-            String query = "SELECT * FROM laptop WHERE true";
+            String query = "SELECT * FROM laptop WHERE TRUE";
             if (minPrice!= null){
                 query = query + " AND price>=" + minPrice;
             }
@@ -26,7 +29,7 @@ public class LaptopService {
             }
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
-            while (rs.next()){
+            while (rs.next()) {
                 String name = rs.getString("name");
                 String url = rs.getString("url");
                 String maker = rs.getString("maker");
@@ -42,8 +45,10 @@ public class LaptopService {
                 int sold = rs.getInt("sold");
                 Timestamp created_timestamp = rs.getTimestamp("created_timestamp");
                 Timestamp last_updated_timestamp = rs.getTimestamp("last_updated_timestamp");
+
                 Laptop laptop = new Laptop(name, url, maker, type, ram, cpu, ssd, hdd, price, card, screen_resolution, screen_size, sold, created_timestamp, last_updated_timestamp);
                 response.add(laptop);
+                System.out.println("da them" + response.size());
             }
         }
         catch (Exception e){

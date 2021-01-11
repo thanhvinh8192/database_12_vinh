@@ -4,6 +4,7 @@ import Activity_31.Service.LaptopService;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
@@ -25,8 +26,9 @@ public class Application {
             System.out.println("SQL Connection to database established!");
 
             LaptopService laptopService = new LaptopService(connection);
-            ArrayList<Laptop> laptops = laptopService.findLaptopByPrice(null, 3000000f);
-            for (Laptop laptop : laptops){
+            List<Laptop> laptops = laptopService.findLaptopByPrice(null, 3000000f);
+            System.out.println("test connection " + laptops.size());
+            for (Laptop laptop :laptops) {
                 System.out.println(laptop.toString());
             }
         }
