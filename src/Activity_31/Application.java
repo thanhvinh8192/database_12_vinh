@@ -5,6 +5,7 @@ import Activity_31.Service.LaptopService;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
     public static void main(String[] args) {
@@ -26,8 +27,17 @@ public class Application {
             System.out.println("SQL Connection to database established!");
 
             LaptopService laptopService = new LaptopService(connection);
-            List<Laptop> laptops = laptopService.findLaptopByPrice(null, 3000000f);
-            System.out.println("test connection " + laptops.size());
+            /*List<Laptop> laptops = laptopService.findLaptopByPrice(null, 30000000f);
+            for (Laptop laptop :laptops) {
+                System.out.println(laptop.toString());
+            }*/
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Nhap ten hang san xuat: ");
+            String brandName = scanner.nextLine();
+            System.out.println();
+            System.out.print("Nhap loai o cung (TRUE = ssd, FALSE = hdd): ");
+            boolean type = scanner.nextBoolean();
+            List<Laptop> laptops = laptopService.findLaptopByMaker(brandName, type);
             for (Laptop laptop :laptops) {
                 System.out.println(laptop.toString());
             }
