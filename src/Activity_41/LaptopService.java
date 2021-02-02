@@ -7,6 +7,7 @@ import java.security.PublicKey;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +89,24 @@ public class LaptopService {
             System.out.println(e);
         }
         return response;
+    }
+
+    public void insertLaptop(String name, String url, String maker, String type, String ram, String cpu, String ssd, String hdd, float price, String card, String screen_resolution, float screen_size, int sold){
+        try{
+            String query = "INSERT INTO laptop (`name`, `url`, `maker`, `type`, `ram`, `cpu`, `ssd`, `hdd`, `price`, `card`, `screen_resolution`, `screen_size`, `sold`) VALUES" +
+                    "('" + name+ "', '" + url + "', '" + maker + "', '" + type + "', '" + ram + "', '" + cpu + "', '" + ssd + "', '" + hdd + "', " + price + ", '" + card + "', '" + screen_resolution + "', " + screen_size + ", " +sold + ");";
+            Statement insertSt = connection.createStatement();
+            Boolean rs = insertSt.execute(query);
+            if (rs){
+                System.out.println("Inserted record into table");
+            }
+            else {
+                System.out.println("Error");
+            }
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
     }
 
 }
