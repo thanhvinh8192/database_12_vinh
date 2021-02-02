@@ -65,7 +65,7 @@ public class Application {
                 int sold = input.nextInt();
                 laptopService.insertLaptop(name, url, maker, type, ram, cpu, ssd, hdd, price, card, screen_resolution, screen_size, sold);
             }*/
-            laptopService.insertLaptop("HP Envy", "https://jp.ext.hp.com/notebooks/personal/envy_15_ep0000/", "HP", "Envy", "8GB", "Intel Core i9", "512GB", "", 30000000, "Not card", "Full HD", 15, 92);
+            laptopService.insertLaptop("HP Envy", "https://jp.ext.hp.com/notebooks/personal/envy_15_ep0000/", "HP", "Envy", "8GB", "Intel Core i9", "512GB", null, 30000000, null, "Full HD", 15, 92);
         }
         catch (Exception e) {
             System.out.println("Connection Failed! Check output console" + e);
