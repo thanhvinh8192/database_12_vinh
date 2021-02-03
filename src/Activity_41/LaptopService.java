@@ -97,7 +97,7 @@ public class LaptopService {
                     "('" + name+ "', '" + url + "', '" + maker + "', '" + type + "', '" + ram + "', '" + cpu + "', '" + ssd + "', '" + hdd + "', " + price + ", '" + card + "', '" + screen_resolution + "', " + screen_size + ", " +sold + ");";
             Statement insertSt = connection.createStatement();
             Boolean rs = insertSt.execute(query);
-            if (rs){
+            if (rs.equals(true)){
                 System.out.println("Inserted record into table");
             }
             else {
@@ -109,4 +109,15 @@ public class LaptopService {
         }
     }
 
+    public void updateLaptopSold(int idLaptop, int quantity){
+        try{
+            String qrUpdate = "UPDATE laptop SET sold = sold+" + quantity + " WHERE id = " +idLaptop+ ";";
+            Statement  updateSt = connection.createStatement();
+            int rs = updateSt.executeUpdate(qrUpdate);
+                System.out.println("Updated record into tabel");
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }
